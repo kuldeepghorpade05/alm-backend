@@ -1,0 +1,17 @@
+
+| Purpose             | Library                                           | Notes                                                            |
+| ------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |
+| Web framework       | `FastAPI`                                         | Handles routes, requests, and responses.                         |
+| Async server        | `uvicorn`                                         | Runs FastAPI app.                                                |
+| OAuth client        | `Authlib`                                         | Handles OAuth 2.0 flows with Google.                             |
+| Session management  | `Starlette.middleware.sessions.SessionMiddleware` | Stores OAuth state securely in server-side sessions.             |
+| Environment vars    | `python-dotenv` + `pydantic`                      | Loads `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` from `.env`. |
+| Optional DB (later) | `motor`                                           | Async MongoDB driver to save users.                              |
+
+SessionMiddleware from Starlette
+
+Why? OAuth requires state management:
+
+Stores temporary session data like state parameter to prevent CSRF attacks.
+
+authlib uses request.session internally.
